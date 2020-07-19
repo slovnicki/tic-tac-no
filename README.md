@@ -1,4 +1,4 @@
-# tic_tac_know
+# Tic-Tac-No
 
 A new Flutter project.
 
