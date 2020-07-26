@@ -2,14 +2,19 @@ import 'dart:ui';
 
 import 'package:flame/components/component.dart';
 
+import 'package:tic_tac_no/grid/identifier.dart';
 import 'package:tic_tac_no/grid/square.dart';
 
 class InnerGrid extends Component {
+  final Identifier identifier;
   final Rect rect;
   Paint paint;
   List<List<Square>> _squares = List<List<Square>>();
 
-  InnerGrid(this.rect) {
+  int get row => this.identifier.row;
+  int get column => this.identifier.column;
+
+  InnerGrid(this.identifier, this.rect) {
     this.paint = Paint()
       ..color = Color(0xff000000)
       ..style = PaintingStyle.stroke
@@ -19,6 +24,8 @@ class InnerGrid extends Component {
       this._squares.add(List<Square>());
       for (int j = 0; j < 3; j++) {
         Square square = Square(
+          this,
+          Identifier(i+1, j+1),
           Rect.fromLTWH(
             this.rect.left + j * this.rect.width / 3,
             this.rect.top + i * this.rect.width / 3,
